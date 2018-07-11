@@ -1,0 +1,21 @@
+{
+  "name": "nyc-build-helper",
+  "version": "0.0.7",
+  "description": "helpers for building and deploying nyc js apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timkeane/nyc-build-helper.git"
+  },
+  "keywords": [],
+  "author": "Tim Keane",
+  "license": "ISC",
+  "dependencies": {
+    "replace-in-file-webpack-plugin": "^1.0.6",
+    "ssh2": "^0.6.1",
+    "zip-dir": "^1.0.2"
+  }
+}
