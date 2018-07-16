@@ -2,6 +2,8 @@ const fs = require('fs')
 const Client = require('ssh2').Client
 const zipdir = require('zip-dir')  
 
+require('dotenv').config()
+
 const error = (err) => {
   if (err) {
     console.error(err)

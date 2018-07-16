@@ -1,5 +1,7 @@
 const Replace = require('replace-in-file-webpack-plugin')
 
+require('dotenv').config()
+
 module.exports = {
   replacePlugin: (options) => {
     options = options || []
