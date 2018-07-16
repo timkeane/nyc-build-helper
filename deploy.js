@@ -16,8 +16,8 @@ const deploy = (projDir, projName, projVer, archiveFile) => {
   let archiveDir = `${process.env.DEPLOY_DIR}/${projName}/archive`
   let deployDir = `${process.env.DEPLOY_DIR}/${projName}/${projVer}`
   if (projName !== 'nyc-lib') {
-    archiveDir = `${deployEnv.DEPLOY_DIR}/archive`
-    deployDir = `${deployEnv.DEPLOY_DIR}/${projName}`    
+    archiveDir = `${process.env.DEPLOY_DIR}/archive`
+    deployDir = `${process.env.DEPLOY_DIR}/${projName}`    
   }
   const cmds = [
     `mkdir -p ${archiveDir}`,
