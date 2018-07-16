@@ -6,7 +6,7 @@ module.exports = {
     if ('stg' === process.env.NODE_ENV) {
       const ol = process.env.STG_OL_TILE_HOST || ''
       const leaf = process.env.STG_LEAF_TILE_HOST || ''
-      const geo = process.env.process.env.STG_GEOCLIENT_HOST || ''
+      const geo = process.env.STG_GEOCLIENT_HOST || ''
       if (!ol) console.error('process.env.STG_OL_TILE_HOST is unset')
       if (!leaf) console.error('process.env.STG_LEAF_TILE_HOST is unset')
       if (!geo) console.error('process.env.STG_GEOCLIENT_HOST is unset')
