@@ -5,14 +5,16 @@ module.exports = {
   replacePlugin: (projDir, options) => {
     const build = buildEnv.getEnv(projDir)
     options = options || []
-    options.push({
-      dir: 'dist',
-      files: ['index.html'],
-      rules: [{
-        search: /%ver%/g,
-        replace: build.projVer
-      }]
-    })
+    if (build.projName !== 'nyc-lib') {
+      options.push({
+        dir: 'dist',
+        files: ['index.html'],
+        rules: [{
+          search: /%ver%/g,
+          replace: build.projVer
+        }]
+      })
+    }
     if (build.geoclientKey) {
       options.push({
         dir: 'dist/js',
