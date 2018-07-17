@@ -1,24 +1,56 @@
 const Replace = require('replace-in-file-webpack-plugin')
-
-require('dotenv').config()
+const buildEnv = require('./build')
 
 module.exports = {
-  replacePlugin: (options) => {
+  replacePlugin: (projDir, options) => {
+    const build = buildEnv.getEnv(projDir)
     options = options || []
-    if ('stg' === process.env.NODE_ENV) {
-      const ol = process.env.STG_OL_TILE_HOST || ''
-      const leaf = process.env.STG_LEAF_TILE_HOST || ''
-      const geo = process.env.STG_GEOCLIENT_HOST || ''
-      if (!ol) console.error('process.env.STG_OL_TILE_HOST is unset')
-      if (!leaf) console.error('process.env.STG_LEAF_TILE_HOST is unset')
-      if (!geo) console.error('process.env.STG_GEOCLIENT_HOST is unset')
+    options.push({
+      dir: 'dist',
+      files: ['index.html'],
+      rules: [{
+        search: /%ver%/g,
+        replace: build.projVer
+      }]
+    })
+    if (build.geoclientKey) {
+      options.push({
+        dir: 'dist/js',
+        files: [`${build.projName}.js`],
+        rules: [{
+          search: 'app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example',
+          replace: build.geoclientKey
+        }]
+      })  
+    }
+    if (build.directionsUrl) {
+      options.push({
+        dir: 'dist/js',
+        files: [`${build.projName}.js`],
+        rules: [{
+          search: 'https://maps.googleapis.com/maps/api/js?&sensor=false&libraries=visualization',
+          replace: build.directionsUrl
+        }]
+      })
+    }
+    if (build.isPrd) {
+      options.push({
+        dir: 'dist',
+        files: ['index.html'],
+          rules: [{
+          search: '/* google analytics */',
+          replace: build.googleAnalytics
+        }]
+      })
+    }    
+    if (build.isStg) {
       options.push({
         dir: 'dist',
         test: /\.js$/g,
         rules: [
-          {search: 'maps{1-4}.nyc.gov', replace: ol}, 
-          {search: 'maps{s}.nyc.gov', replace: leaf},
-          {search: '//maps.nyc.gov', replace: `//${geo}`}
+          {search: 'maps{1-4}.nyc.gov', replace: build.olTileHost}, 
+          {search: 'maps{s}.nyc.gov', replace: build.leafTileHost},
+          {search: '//maps.nyc.gov', replace: `//${build.geoclientHost}`}
         ]
       })
     }

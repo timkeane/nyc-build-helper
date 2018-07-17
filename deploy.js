@@ -1,6 +1,7 @@
 const fs = require('fs')
 const Client = require('ssh2').Client
 const zipdir = require('zip-dir')  
+const buildEnv = require('./build')
 
 require('dotenv').config()
 
@@ -29,7 +30,11 @@ const deploy = (projDir, projName, projVer, archiveFile) => {
     `unzip ${archiveDir}/${archiveFile} -d ${deployDir}`,
     `rm -rf ${deployDir}.bak`
   ]
+
   const conn = new Client()
+  const host = isProd ? process.env.PRD_DEPLOY_HOST : process.env.STG_DEPLOY_HOST
+  console.log(`deploying to ${host}`)
+
   conn.on('ready', function() {
     console.log('CONNECTED')
     conn.sftp((err, sftp) => {
@@ -54,7 +59,7 @@ const deploy = (projDir, projName, projVer, archiveFile) => {
       read.pipe(write)
     })
   }).connect({
-    host: isProd ? process.env.PRD_DEPLOY_HOST : process.env.STG_DEPLOY_HOST,
+    host: host,
     username: process.env.DEPLOY_USER,
     privateKey: fs.readFileSync(`${process.env.HOME}/.ssh/id_rsa`),
     port: 22
@@ -62,13 +67,12 @@ const deploy = (projDir, projName, projVer, archiveFile) => {
 }
 
 module.exports = function(projDir) {
-  const package = require(`${projDir}/package.json`)
-  const projName = package.name
-  const projVer = `v${package.version}`
-  const archiveFile = `${projName}-${projVer}-${nodeEnv}.zip`
+  const build = buildEnv.getEnv(projDir)
+  const archiveFile = `${build.projName}-${build.projVer}-${build.nodeEnv}.zip`
   console.log(`zipping distribution to ${archiveFile}`)
   zipdir('./dist', {saveTo: archiveFile}, (err, buffer) => {
     error(err)
-    deploy(projDir, projName, projVer, archiveFile)
+  console.log(`zipping distribution to ${archiveFile}`)
+    deploy(projDir, build.projName, build.projVer, archiveFile)
   })
 }

@@ -1,4 +1,4 @@
 module.exports = {
   deploy: require('./deploy.js'),
-  replace: require('./replace.js')
+  config: require('./config.js')
 }
