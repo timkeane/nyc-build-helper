@@ -5,8 +5,6 @@ module.exports = {
   replacePlugin: (projDir, options) => {
     const build = buildEnv.getEnv(projDir)
     options = options || []
-    console.warn(build);
-
     if (build.projName !== 'nyc-lib') {
       options.push({
         dir: 'dist',
@@ -58,8 +56,6 @@ module.exports = {
         ]
       })
     }
-    console.warn(options);
-    
     return new Replace(options)      
   }
 }
