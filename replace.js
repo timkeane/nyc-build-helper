@@ -5,6 +5,8 @@ module.exports = {
   replacePlugin: (projDir, options) => {
     const build = buildEnv.getEnv(projDir)
     options = options || []
+    console.warn(build);
+
     if (build.projName !== 'nyc-lib') {
       options.push({
         dir: 'dist',
@@ -14,6 +16,16 @@ module.exports = {
           replace: build.projVer
         }]
       })
+      if (build.isPrd) {
+        options.push({
+          dir: 'dist',
+          files: ['index.html'],
+            rules: [{
+            search: '/* google analytics */',
+            replace: build.googleAnalytics
+          }]
+        })
+      }    
     }
     if (build.geoclientKey) {
       options.push({
@@ -35,16 +47,6 @@ module.exports = {
         }]
       })
     }
-    if (build.isPrd) {
-      options.push({
-        dir: 'dist',
-        files: ['index.html'],
-          rules: [{
-          search: '/* google analytics */',
-          replace: build.googleAnalytics
-        }]
-      })
-    }    
     if (build.isStg) {
       options.push({
         dir: 'dist',
@@ -56,6 +58,8 @@ module.exports = {
         ]
       })
     }
+    console.warn(options);
+    
     return new Replace(options)      
   }
 }
