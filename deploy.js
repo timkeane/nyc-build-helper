@@ -68,7 +68,7 @@ const deploy = (projDir, projName, projVer, archiveFile) => {
 
 module.exports = function(projDir) {
   const build = buildEnv.getEnv(projDir)
-  const archiveFile = `${build.projName}-${build.projVer}-${build.nodeEnv}.zip`
+  const archiveFile = `${build.projName}-${build.projVer}-${nodeEnv}.zip`
   console.log(`zipping distribution to ${archiveFile}`)
   zipdir('./dist', {saveTo: archiveFile}, (err, buffer) => {
     error(err)
