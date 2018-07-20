@@ -74,7 +74,6 @@ module.exports = function(projDir) {
   console.log(`zipping distribution to ${archiveFile}`)
   zipdir('./dist', {saveTo: archiveFile}, (err, buffer) => {
     error(err)
-  console.log(`zipping distribution to ${archiveFile}`)
     deploy(projDir, build.projName, projVer, archiveFile)
   })
 }
