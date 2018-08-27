@@ -16,7 +16,7 @@ module.exports = {
       {from: path.resolve(projDir, 'src/img'), to: 'img'},
       {from: path.resolve(projDir, 'src/data'), to: 'data'},
       {
-        from: path.resolve(projDir, `node_modules/nyc-lib/css/build/nyc.ol.${build.projName}.theme.css`),
+        from: path.resolve(projDir, `node_modules/nyc-lib/css/build/nyc.ol.fullscreen.${build.projName}.theme.css`),
         to: `css/${build.projName}.css`,
         type: 'dir'
       }
