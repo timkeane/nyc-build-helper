@@ -19,7 +19,7 @@ module.exports = {
           dir: 'dist',
           files: ['index.html'],
             rules: [{
-            search: '/* google analytics */',
+            search: '<!-- google analytics -->',
             replace: build.googleAnalytics
           }]
         })
