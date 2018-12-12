@@ -1,6 +1,6 @@
 {
   "name": "nyc-build-helper",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "helpers for building and deploying nyc js apps",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "replace-in-file-webpack-plugin": "^1.0.6",
     "ssh2": "^0.6.1",
     "terser-webpack-plugin": "1.1.0",
-    "webpack": "^4.16.1",
+    "webpack": "^4.27.1",
     "zip-dir": "^1.0.2"
   }
 }
