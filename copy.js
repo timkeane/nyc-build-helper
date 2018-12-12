@@ -21,6 +21,9 @@ module.exports = {
         type: 'dir'
       }
     ])
+    if (build.NODE_ENV === 'dev' || build.NODE_ENV === 'development') {
+      options.push({from: path.resolve(projDir, 'node_modules/nyc-lib/css/build'), to: 'css'})
+    }
     return new Copy(options)
   }
 }
