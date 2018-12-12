@@ -3,7 +3,7 @@ const buildEnv = require('./build')
 const copy = require('./copy')
 const replace = require('./replace')
 const webpack = require('webpack')
-const Minify = require('babel-minify-webpack-plugin')
+const Minify = require('terser-webpack-plugin')
 const Clean = require('clean-webpack-plugin')
 
 module.exports = {
@@ -18,7 +18,16 @@ module.exports = {
       new webpack.optimize.ModuleConcatenationPlugin(),
       copy.copyPlugin(projDir, options.copyOptions),
       replace.replacePlugin(projDir, options.replaceOptions),
-      new Minify()
+      new Minify({
+        parallel: true,
+        cache: true,
+        sourceMap: true,
+        terserOptions: {
+         output: {
+              ascii_only: true
+          }
+        }
+      })
     ]
 
     return {
