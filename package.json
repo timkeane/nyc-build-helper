@@ -14,12 +14,12 @@
   "author": "Tim Keane",
   "license": "ISC",
   "dependencies": {
-    "babel-minify-webpack-plugin": "^0.3.1",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.2",
     "dotenv": "^6.0.0",
     "replace-in-file-webpack-plugin": "^1.0.6",
     "ssh2": "^0.6.1",
+    "terser-webpack-plugin": "1.1.0",
     "webpack": "^4.16.1",
     "zip-dir": "^1.0.2"
   }
