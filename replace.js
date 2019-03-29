@@ -46,9 +46,11 @@ module.exports = {
       })
     }
     if (build.isStg) {
+      console.warn(build);
+      
       options.push({
-        dir: 'dist',
-        test: /\.js$/g,
+        dir: 'dist/js',
+        files: [`${build.projName}.js`],
         rules: [
           {search: 'maps{1-4}.nyc.gov', replace: build.olTileHost}, 
           {search: 'maps{s}.nyc.gov', replace: build.leafTileHost},

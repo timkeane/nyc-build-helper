@@ -1,6 +1,6 @@
 {
   "name": "nyc-build-helper",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "description": "helpers for building and deploying nyc js apps",
   "main": "index.js",
   "scripts": {
