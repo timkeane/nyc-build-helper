@@ -3,8 +3,8 @@ const buildEnv = require('./build')
 const copy = require('./copy')
 const replace = require('./replace')
 const webpack = require('webpack')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const Minify = require('terser-webpack-plugin')
-const Clean = require('clean-webpack-plugin')
 
 module.exports = {
   defaultWebpackConfig: (projDir, options) => {
@@ -14,7 +14,7 @@ module.exports = {
     options = options || {}
     
     const plugins = [
-      new Clean(['dist'], {root: projDir}),
+      new CleanWebpackPlugin(),
       new webpack.optimize.ModuleConcatenationPlugin(),
       copy.copyPlugin(projDir, options.copyOptions),
       replace.replacePlugin(projDir, options.replaceOptions),
@@ -40,9 +40,10 @@ module.exports = {
       module: {
         rules: [{
           test: /\.js$/,
+          // exclude: /node_modules/,
           loader: 'babel-loader',
           query: {
-            presets: ['es2015']
+            presets: ['@babel/preset-env']
           }
         }]
       },
