@@ -40,7 +40,7 @@ module.exports = {
         dir: 'dist/js',
         files: [`${build.projName}.js`],
         rules: [{
-          search: 'https://maps.googleapis.com/maps/api/js?&sensor=false&libraries=visualization',
+          search: /https:\/\/maps\.googleapis\.com\/maps\/api\/js\?&sensor=false&libraries=visualization/g,
           replace: build.directionsUrl
         }]
       })
