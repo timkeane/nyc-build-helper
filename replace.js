@@ -36,6 +36,17 @@ module.exports = {
       })  
     }
     if (build.directionsUrl) {
+      if (build.projName === 'nyc-lib') {
+        console.warn('=======================================================================')
+        options.push({
+          dir: 'dist/examples/ol',
+          test: /\.html$/,
+          rules: [{
+            search: /https:\/\/maps\.googleapis\.com\/maps\/api\/js\?&sensor=false&libraries=visualization/g,
+            replace: build.directionsUrl
+          }]
+        })
+      }
       options.push({
         dir: 'dist/js',
         files: [`${build.projName}.js`],

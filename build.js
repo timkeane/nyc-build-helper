@@ -19,6 +19,7 @@ module.exports = {
       geoclientKey: geoclient,
       directionsUrl: directions
     }
+    console.warn(buildEnv)
 
     if (buildEnv.isStg) {
       const ol = process.env.STG_OL_TILE_HOST || ''

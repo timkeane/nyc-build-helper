@@ -9,7 +9,6 @@ const Minify = require('terser-webpack-plugin')
 module.exports = {
   defaultWebpackConfig: (projDir, options) => {
     const build = buildEnv.getEnv(projDir)
-    console.log(build)
 
     options = options || {}
     
