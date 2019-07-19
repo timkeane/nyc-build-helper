@@ -11,6 +11,7 @@ module.exports = {
     }
     options = options.concat([
       path.resolve(projDir, 'src/index.html'),
+      path.resolve(projDir, `node_modules/nyc-lib/src/screen-reader-info.html`),
       path.resolve(projDir, 'src/manifest.webmanifest'),
       {from: path.resolve(__dirname, 'babel-polyfill.js'), to: 'js'},
       {from: path.resolve(projDir, 'src/img'), to: 'img'},
