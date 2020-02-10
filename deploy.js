@@ -34,7 +34,9 @@ const deploy = (projDir, projName, projVer, archiveFile) => {
 
   const conn = new Client()
   const host = isProd ? process.env.PRD_DEPLOY_HOST : process.env.STG_DEPLOY_HOST
-  console.log(`deploying to ${host}`)
+  console.warn(`archiveFile ${archiveFile}`)
+  console.warn(`archiveDir ${archiveDir}`)
+  console.log(`deploying ${archiveFile} to ${host}`)
 
   conn.on('ready', function() {
     console.log('CONNECTED')
