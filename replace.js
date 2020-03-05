@@ -64,7 +64,7 @@ module.exports = {
         rules: [
           {search: 'maps{1-4}.nyc.gov', replace: build.olTileHost}, 
           {search: 'maps{s}.nyc.gov', replace: build.leafTileHost},
-          {search: '//maps.nyc.gov', replace: `//${build.geoclientHost}`}
+          {search: '//maps.nyc.gov', replace: `//${build.geoclientHost}`},
           {search: 'https://maps.nyc.gov/nyc-lib/icons', replace: `//${build.iconUrl}`}
         ]
       })
