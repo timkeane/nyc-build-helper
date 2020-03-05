@@ -37,7 +37,6 @@ module.exports = {
     }
     if (build.directionsUrl) {
       if (build.projName === 'nyc-lib') {
-        console.warn('=======================================================================')
         options.push({
           dir: 'dist/examples/ol',
           test: /\.html$/,
@@ -60,12 +59,11 @@ module.exports = {
       console.warn(build);
       options.push({
         dir: 'dist/js',
-        files: [`${build.projName}.js`],
         rules: [
           {search: 'maps{1-4}.nyc.gov', replace: build.olTileHost}, 
           {search: 'maps{s}.nyc.gov', replace: build.leafTileHost},
           {search: '//maps.nyc.gov', replace: `//${build.geoclientHost}`},
-          {search: 'https://maps.nyc.gov/nyc-lib/icons', replace: `//${build.iconUrl}`}
+          {search: 'https\\://maps.nyc.gov/nyc-lib/icons', replace: build.iconUrl}
         ]
       })
     }
