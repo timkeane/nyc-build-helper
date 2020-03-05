@@ -25,12 +25,15 @@ module.exports = {
       const ol = process.env.STG_OL_TILE_HOST || ''
       const leaf = process.env.STG_LEAF_TILE_HOST || ''
       const geo = process.env.STG_GEOCLIENT_HOST || ''
+      const icon = process.env.STG_ICON_BASE_URL || ''
       if (!ol) console.error('process.env.STG_OL_TILE_HOST is unset')
       if (!leaf) console.error('process.env.STG_LEAF_TILE_HOST is unset')
       if (!geo) console.error('process.env.STG_GEOCLIENT_HOST is unset')
+      if (!icon) console.error('process.env.STG_ICON_BASE_URL is unset')
       buildEnv.olTileHost = ol
       buildEnv.leafTileHost = leaf
       buildEnv.geoclientHost = geo
+      buildEnv.iconUrl = icon
     }
 
     if (buildEnv.isPrd) {

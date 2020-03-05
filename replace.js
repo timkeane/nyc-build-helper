@@ -58,7 +58,6 @@ module.exports = {
     }
     if (build.isStg) {
       console.warn(build);
-      
       options.push({
         dir: 'dist/js',
         files: [`${build.projName}.js`],
@@ -66,9 +65,10 @@ module.exports = {
           {search: 'maps{1-4}.nyc.gov', replace: build.olTileHost}, 
           {search: 'maps{s}.nyc.gov', replace: build.leafTileHost},
           {search: '//maps.nyc.gov', replace: `//${build.geoclientHost}`}
+          {search: 'https://maps.nyc.gov/nyc-lib/icons', replace: `//${build.iconUrl}`}
         ]
       })
     }
-    return new Replace(options)      
+    return new Replace(options)
   }
 }
