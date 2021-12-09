@@ -1,6 +1,6 @@
 {
   "name": "nyc-build-helper",
-  "version": "0.0.42",
+  "version": "0.0.43",
   "description": "helpers for building and deploying nyc js apps",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,9 @@
     "zip-a-folder": "^1.1.0"
   },
   "resolutions": {
-    "**/**/serialize-javascript": "^2.1.1"
+    "**/**/ssri": "^6.0.2",
+    "**/**/glob-parent": "^5.1.2",
+    "**/**/serialize-javascript": "^3.1.0"
   },
   "devDependencies": {}
 }
