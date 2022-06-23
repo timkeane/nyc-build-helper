@@ -69,10 +69,13 @@ const deploy = (projDir, projName, projVer, archiveFile) => {
   })
 }
 
-module.exports = async function(projDir) {
+module.exports = async projDir => {
   const build = buildEnv.getEnv(projDir)
   const projVer = `v${build.projVer}`
   const archiveFile = `${build.projName}-${projVer}-${nodeEnv}.zip`
   console.log(`zipping distribution to ${archiveFile}`)
-  await zipdir('./dist', archiveFile)
+  await zipdir('./dist', archiveFile, (err, buffer) => {
+    error(err)
+  })
+  deploy(projDir, build.projName, projVer, archiveFile)
 }
